@@ -1,0 +1,15 @@
+{% extends 'log_keepers/base.html'%}
+
+{% block content %}
+    <ul>
+        {%for topic in topics%}
+            <li>
+                <a href = "{% url 'log_keepers:topic' topic.id %}">{{topic}}</a>
+                <a href = "{% url 'log_keepers:delete_topic' topic.id %}">delete</a>
+            </li>
+        {% empty %}
+            <li>No topics have been added yet. </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'log_keepers:new_topic' %}"> Add a new topic</a>
+{% endblock content %}

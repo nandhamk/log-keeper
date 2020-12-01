@@ -1,0 +1,25 @@
+{% extends 'log_keepers/base.html' %}
+
+{% block content %}
+    <p>registration</p>
+
+    <form action="{% url 'users:register' %}" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="first_name" placeholder="first name"><br>
+        <input type="text" name="last_name" placeholder="last name"><br>
+        <input type="text" name="user_name" placeholder="user name"><br>
+        <input type="email" name="email" placeholder="email@gmail.com"><br>
+        <input type="password" name="password1" placeholder="password"><br>
+        <input type="password" name="password2" placeholder="confirm password"><br>
+        <input type="submit" >
+    </form>
+
+    <div>
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% empty %}
+            <p></p>
+        {% endfor %}
+    </div>
+{% endblock content %}

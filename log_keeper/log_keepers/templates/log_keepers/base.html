@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <a href="{% url 'log_keepers:index' %}">Log keeper</a>-
+    <a href="{% url 'log_keepers:topics' %}">topics</a>
+    {% if user.is_authenticated %}
+        Hello,{{user.username}}
+        <a href="{% url 'users:logout' %}">logout</a>
+    {% else %}
+        <a href="{% url 'users:register' %}">registration</a>
+        <a href="{% url 'users:login' %}">login</a>
+    {% endif %}
+    {% block content %}
+    {% endblock content%}
+</body>
+</html>
