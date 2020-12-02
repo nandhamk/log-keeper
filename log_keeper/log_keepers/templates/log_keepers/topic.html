@@ -1,25 +1,39 @@
 {% extends 'log_keepers/base.html' %}
 
 {% block content %}
-    <p>Topic:{{topic}}</p>
+    <h2 class="my-3 mx-3">{{topic}}</h2>
 
-    <p>Entries: </p>
-    <a href="{% url 'log_keepers:new_entry' topic.id %}">add new entry</a>
-    <ul>
+    <h5 class="my-3 mx-3">Entries: </h5>
+    <ul class="list-unstyled mx-4 my-2">
         {% for entry in entries %}
             <li>
-                <p>{{entry.date_added|date:'M d, Y H:i'}}</p>
-                <p>{{entry.text|linebreaks }}</p>
-                <p>
-                    <a href="{% url 'log_keepers:edit_entry' entry.id %}">edit entry</a>
-                    <a href="{% url 'log_keepers:delete_entry' entry.id %}">delete entry</a>
-                </p>
+                <div class="card my-2">
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="mb-2">{{entry.date_added|date:'M d, Y H:i'}}</p>
+                                <p>{{entry.text|linebreaks }}</p>
+                            </div>
+                            <div class="row">
+                                <a href = "{% url 'log_keepers:edit_entry' entry.id %}" class="text-light btn btn-primary btn-sm col-lg-1 offset-lg-8">edit entry</a>
+                                <a href = "{% url 'log_keepers:delete_entry' entry.id %}" class="text-light btn btn-danger btn-sm col-lg-1 ">delete entry</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </li>
         {% empty %}
             <li>
-                There are no entries for this post yet.
+                <div class="card">
+                    <div class="card-body">
+                       There are no entries for this post yet.
+                    </div>
+                </div>
+
             </li>
         {% endfor %}
     </ul>
+    <a href="{% url 'log_keepers:new_entry' topic.id %}" class="text-light btn btn-primary mx-4 my-4"> Add new entry</a>
 
 {% endblock content %}

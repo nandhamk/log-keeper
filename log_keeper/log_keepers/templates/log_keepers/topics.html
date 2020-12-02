@@ -1,15 +1,30 @@
 {% extends 'log_keepers/base.html'%}
 
 {% block content %}
-    <ul>
+<h2 class="mx-4">Topics</h2>
+    <ul class="list-unstyled mx-4 my-2">
         {%for topic in topics%}
             <li>
-                <a href = "{% url 'log_keepers:topic' topic.id %}">{{topic}}</a>
-                <a href = "{% url 'log_keepers:delete_topic' topic.id %}">delete</a>
+                <div class="card my-2">
+                    <div class="card-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <a href = "{% url 'log_keepers:topic' topic.id %}" class="col-lg-2 col-md-2">{{topic}}</a>
+                                    <a href = "{% url 'log_keepers:delete_topic' topic.id %}" class="text-light btn btn-danger btn-sm col-lg-2 offset-lg-8">delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
         {% empty %}
-            <li>No topics have been added yet. </li>
+            <li>
+                <div class="card">
+                    <div class="card-body">
+                        No topics have been added yet.
+                    </div>
+                </div>
+            </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'log_keepers:new_topic' %}"> Add a new topic</a>
+<a href="{% url 'log_keepers:new_topic' %}" class="text-light btn btn-primary mx-4 my-4"> Add a new topic</a>
 {% endblock content %}

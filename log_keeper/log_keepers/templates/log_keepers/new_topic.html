@@ -1,10 +1,15 @@
 {% extends "log_keepers/base.html" %}
 
 {% block content %}
-    <p>Add a new Topic:</p>
-    <form action="{% url 'log_keepers:new_topic' %}" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">add topic</button>
-    </form>
+    <h2 class="text-center my-2">Add a new Topic:</h2>
+    <div class="conatiner " style="display:flex;justify-content:center;" >
+        <div class="row" >
+            <form action="{% url 'log_keepers:new_topic' %}" method="post" style="display:flex;justify-content:center;flex-direction:column;" class="px-5 py-5" >
+                {% csrf_token %}
+                    {{form.as_p}}
+                    <button type="submit" class="btn btn-primary ">add topic</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock content %}

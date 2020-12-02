@@ -2,12 +2,14 @@
 
 {% block content %}
     <p>
-        <a href="{% url 'log_keepers:topic' topic.id %}">{{topic}}</a>
+        <h2 class="text-center"><a href="{% url 'log_keepers:topic' topic.id %}">{{topic}}</a></h2>
     </p>
-    <p>Add a new entry : </p>
-    <form action="{% url 'log_keepers:new_entry' topic.id %}" method="post">
+    <h4 class="text-center">Add a new entry : </h4>
+    <div class="conatiner " style="display:flex;justify-content:center;" >
+    <form action="{% url 'log_keepers:new_entry' topic.id %}" method="post" style="display:flex;justify-content:center;flex-direction:column;" class="px-5 py-5" >
         {% csrf_token %}
         {{ form.as_p}}
-        <button type="submit">add entry</button>
+        <button type="submit"  class="btn btn-primary ">add entry</button>
     </form>
+    </div>
 {% endblock content%}

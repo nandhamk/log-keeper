@@ -81,14 +81,16 @@ def edit_entry(request, entry_id):
 @login_required
 def delete_topic(request, topic_id):
     if check_topic(topic_id):
-        topic = Topic.objects.filter(id=topic_id)
+        topic = Topic.objects.filter(id=topic_id)[0]
         if request.user != topic.owner:
             raise Http404
         else:
             topic.delete()
     else:
         return HttpResponseRedirect(reverse('log_keepers:topics'))
-    return render(request, "log_keepers/topics.html")
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
+    context = {"topics":topics}
+    return render(request, "log_keepers/topics.html",context)
 
 
 @login_required
